@@ -1,22 +1,23 @@
 
-setTimeout(() => {
-  // Crear elemento h1
-  const h1 = document.createElement('h1');
-  h1.innerText = 'Modificando el DOM';
+const contenedorCards = document.getElementById("contenedor_cards");
+let cardsHTML ="";
 
-  // Asignar color de texto al h1 (rojo o verde)
-  h1.style.color = 'green';
+for (let pokemon in pokemons){
+cardsHTML += crearCards(pokemon);
+}
+contenedorCards.innerHTML= cardsHTML;
 
-  // Crear elemento p con texto Lorem Ipsum
-  const p = document.createElement('p');
-  p.innerText = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+function crearCards(pokemon){
+  let card = document.createElement('div');
+  card.classList.add('card')
+  let id = document.createElement('div');
+  let name = document.createElement('p');
+  let image = document.createElement('img');
 
-  // Asignar clase al elemento p para estilo de fuente distinto
-  p.classList.add('fuente-especial');
+  id.innerText = pokemons[pokemon].id ;
+  name.innerText = pokemons[pokemon].name ;
+  image.src = pokemons[pokemon].image;
 
-  let contenedor = document.getElementById('contenedor')
-  // Agregar elementos h1 y p al DOM
-  contenedor.appendChild(h1);
-  contenedor.appendChild(p);
-
-}, 3000);
+  card.append(id, name, image)
+  return card.outerHTML
+}
